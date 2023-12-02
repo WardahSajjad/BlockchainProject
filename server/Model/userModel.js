@@ -22,6 +22,10 @@ const userSchema = new Schema(
             required : true
         },
 
+        ethereumAddress:{
+            type: String
+        }
+
       
 
     },

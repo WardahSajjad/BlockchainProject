@@ -41,7 +41,7 @@ const app = express();
 const cors = require("cors");
 const userRoutes = require("./Routes/user.js");
 const customTokenRoute = require("./Routes/customToken.js");
-
+const transactionRoute = require("./Routes/transaction.js");
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -104,6 +104,7 @@ const web3 = new Web3(new Web3.providers.HttpProvider('https://goerli.infura.io/
 
 app.use("/api/user", userRoutes);
 app.use("/api/createtoken", customTokenRoute);
+app.use("/api/transaction", transactionRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

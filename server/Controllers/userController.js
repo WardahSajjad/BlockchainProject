@@ -14,7 +14,7 @@ const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const wallet = ethers.Wallet.createRandom();
     const ethereumAddress = wallet.address;
-
+    console.log = ethereumAddress
     // Create a new user with the Ethereum address
    
     const newUser = new User({ name, gender, email, password: hashedPassword, ethereumAddress });
@@ -36,11 +36,12 @@ const loginUser = (req, res, next) => {
     req.login(user, { session: false }, err => {
       if (err) return next(err);
       const ethereumAddress = user.ethereumAddress;
+      console.log = ethereumAddress;
 
       // Generate a JWT token for authentication with Ethereum address
       const token = jwt.sign({ username: user.username, ethereumAddress }, config.secretKey);
   
-      return res.json({ message: 'Login successful', token });
+      return res.json({ message: 'Login successful', token , ethereumAddress});
     });
   })(req, res, next); 
 };
